@@ -131,9 +131,16 @@
         text-decoration: none;
         padding: 8px 12px;
         border-radius: 10px;
-        transition: background 0.2s ease, color 0.2s ease;
+        transition: background 0.3s ease, color 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease, background-position 0.6s ease;
       }
-      .nav-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
+      .nav-link:hover {
+        color: #fff;
+        background: linear-gradient(120deg, #ff6a00 0%, #ff3b3b 50%, #ffd000 100%);
+        background-size: 160% 160%;
+        background-position: 30% 50%;
+        box-shadow: 0 6px 18px rgba(255, 80, 0, 0.35), 0 0 20px rgba(255, 160, 0, 0.25);
+        filter: brightness(1.04) saturate(1.05);
+      }
       .btn-buy {
         color: #fff;
         text-decoration: none;
@@ -159,6 +166,9 @@
         pointer-events: none;
       }
       .btn-buy:hover { filter: brightness(1.08); }
+      .glass-nav .btn-buy { background: rgba(255,255,255,0.12); background-image: none; box-shadow: none; animation: none; text-shadow: none; }
+      .glass-nav .btn-buy::before { display: none; }
+      .glass-nav .btn-buy:hover { filter: none; background: rgba(255,255,255,0.18); }
       .btn-buy.btn-ghost { background: transparent; background-image: none; box-shadow: none; animation: none; border: 1px solid rgba(255,255,255,0.25); color: #fff; }
       .btn-buy.btn-ghost::before { display: none; }
 
@@ -347,7 +357,7 @@
         <nav class="nav-links">
           <a href="#home" class="nav-link">Home</a>
           <a href="#about" class="nav-link">About This Coin</a>
-          <a href="https://pump.fun/coin/9pjkFwuR8vcMoAhf77wM6dWYjcwBUFXYBXiVX4Napump" class="btn-buy">Buy Now</a>
+          <a href="https://dexscreener.com/solana/5tB3VZ9HoQZ7V3Ly6ZiP57hgx42xdWGP1RXCTQZNbBMs" class="nav-link">How to Buy?</a>
         </nav>
       </div>
     </header>
