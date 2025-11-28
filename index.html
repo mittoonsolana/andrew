@@ -141,6 +141,15 @@
         box-shadow: 0 6px 18px rgba(255, 80, 0, 0.35), 0 0 20px rgba(255, 160, 0, 0.25);
         filter: brightness(1.04) saturate(1.05);
       }
+      .nav-link.nav-buy {
+        color: #fff;
+        background: linear-gradient(120deg, #ff6a00 0%, #ff3b3b 50%, #ffd000 100%);
+        background-size: 160% 160%;
+        background-position: 30% 50%;
+        box-shadow: 0 6px 18px rgba(255, 80, 0, 0.45), 0 0 24px rgba(255, 160, 0, 0.35);
+        filter: brightness(1.06) saturate(1.06);
+      }
+      .nav-link.nav-buy:hover { filter: brightness(1.1) saturate(1.08); box-shadow: 0 8px 22px rgba(255, 80, 0, 0.55), 0 0 28px rgba(255, 200, 0, 0.35); }
       .btn-buy {
         color: #fff;
         text-decoration: none;
@@ -348,7 +357,7 @@
     <img id="bg-soldier" src="soldier.jpg" alt="Soldier overlay" />
 
     <!-- Fixed bottom background banner -->
-    <img id="bg-bottom-banner" src="web_bottom banner.png" alt="" />
+    <img id="bg-bottom-banner" src="web_bottom banner.png" alt="Bottom banner" />
 
     <!-- Glassmorphism Navbar -->
     <header class="glass-nav">
@@ -357,7 +366,7 @@
         <nav class="nav-links">
           <a href="#home" class="nav-link">Home</a>
           <a href="#about" class="nav-link">About This Coin</a>
-          <a href="https://dexscreener.com/solana/5tB3VZ9HoQZ7V3Ly6ZiP57hgx42xdWGP1RXCTQZNbBMs" class="nav-link">How to Buy?</a>
+          <a href="https://dexscreener.com/solana/5tB3VZ9HoQZ7V3Ly6ZiP57hgx42xdWGP1RXCTQZNbBMs" class="nav-link nav-buy">Buy Now</a>
         </nav>
       </div>
     </header>
@@ -392,9 +401,9 @@
         <h2>$ANDREW Coin Fee Roadmap</h2>
       <ul class="fee-list">
         <li>80% allocated to direct support for Andrew</li>
-        <li>20% allocated to responsible project promotion</li>
+        <li>20% allocated to project promotion</li>
       </ul>
-      <p>Objective: When Andrew has recovered, the full balance of accumulated creator fees will be used to purchase $ANDREW. Those tokens will be transferred to a wallet created by Andrew and may be shared publicly with the community.</p>
+      <p>Objective: When Andrew has recovered, the full balance of accumulated creator fees will be used to purchase $ANDREW. Those tokens will be transferred to a wallet and sent directly to Andrew.</p>
       <p>Commitment: All allocations and transfers will be executed transparently and responsibly. This initiative is intended to honor Andrew’s service with a meaningful, community‑backed contribution.</p>
       <div class="fee-actions">
         <a class="btn-buy" href="https://solscan.io/account/3BmFgVMwTsYU2T5XakQGJvKujtn993S4iX9wE7asujyL" target="_blank" rel="noopener">Track Dev Wallet</a>
@@ -756,5 +765,4 @@
     
   </body>
   </html>
-
 
