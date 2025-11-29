@@ -40,11 +40,12 @@
         width: 100vw;
         height: 100vh;
         object-fit: cover;
+        object-position: top;
         z-index: 0;
         pointer-events: none;
         mix-blend-mode: normal;
         opacity: 0.8;
-        filter: saturate(1.05) contrast(1.05);
+        filter: saturate(1.05) contrast(1.05) blur(3px);
       }
 
       @media (max-width: 768px) {
@@ -74,7 +75,8 @@
         filter: drop-shadow(0 12px 28px rgba(0,0,0,0.55)) drop-shadow(0 4px 10px rgba(0,0,0,0.35));
         will-change: filter;
       }
-      #hero-image { width: min(1120px, 92vw); margin-top: 48px; }
+      #hero-image { width: min(1120px, 92vw); margin-top: 48px; position: relative; }
+      #hero-image::after { content: ""; position: absolute; inset: -3px; border-radius: 16px; padding: 2px; background: conic-gradient(from 0deg, #1a2b6d, #ffffff, #c01f2f, #1a2b6d); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; box-shadow: 0 0 10px rgba(26,43,109,0.35), 0 0 14px rgba(192,31,47,0.35); animation: spinRing 4s linear infinite; pointer-events: none; }
       .hero-title { width: min(1120px, 92vw); margin: 12px auto 0; text-align: center; color: #fff; font-weight: 800; letter-spacing: 0.4px; font-size: clamp(24px, 5vw, 40px); }
 
       /* Global */
@@ -89,12 +91,12 @@
         transform: translateX(-50%);
         width: min(1120px, 92vw);
         z-index: 3;
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.25);
+        background: rgba(12, 22, 46, 0.8);
+        border: 1px solid rgba(255,255,255,0.28);
         border-radius: 16px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-        backdrop-filter: saturate(1.2) blur(12px);
-        -webkit-backdrop-filter: saturate(1.2) blur(12px);
+        box-shadow: 0 8px 26px rgba(8,16,32,0.55);
+        backdrop-filter: saturate(1.15) blur(12px);
+        -webkit-backdrop-filter: saturate(1.15) blur(12px);
       }
       .glass-nav .inner {
         display: flex;
@@ -120,11 +122,13 @@
         animation: nav-logo-flip 3s infinite ease-in-out;
         box-shadow: 0 2px 8px rgba(0,0,0,0.35);
       }
+      .flag-icon { width: 28px; height: 18px; border-radius: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.35); transform-origin: left center; display: inline-block; will-change: transform; transform-style: preserve-3d; animation: flagWave 2.4s ease-in-out infinite; }
       @keyframes nav-logo-flip {
         0%, 84% { transform: rotateY(0deg); }
         92% { transform: rotateY(180deg); }
         100% { transform: rotateY(360deg); }
       }
+      @keyframes flagWave { 0% { transform: perspective(140px) rotateY(0deg) translateY(0); } 50% { transform: perspective(140px) rotateY(12deg) translateY(-1px); } 100% { transform: perspective(140px) rotateY(0deg) translateY(0); } }
       .nav-links { display: flex; gap: 12px; align-items: center; }
       .nav-link {
         color: #eee;
@@ -135,45 +139,30 @@
       }
       .nav-link:hover {
         color: #fff;
-        background: linear-gradient(120deg, #ff6a00 0%, #ff3b3b 50%, #ffd000 100%);
-        background-size: 160% 160%;
-        background-position: 30% 50%;
-        box-shadow: 0 6px 18px rgba(255, 80, 0, 0.35), 0 0 20px rgba(255, 160, 0, 0.25);
-        filter: brightness(1.04) saturate(1.05);
+        background: rgba(255,255,255,0.14);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+        filter: brightness(1.06);
       }
       .nav-link.nav-buy {
         color: #fff;
-        background: linear-gradient(120deg, #ff6a00 0%, #ff3b3b 50%, #ffd000 100%);
-        background-size: 160% 160%;
-        background-position: 30% 50%;
-        box-shadow: 0 6px 18px rgba(255, 80, 0, 0.45), 0 0 24px rgba(255, 160, 0, 0.35);
-        filter: brightness(1.06) saturate(1.06);
+        background: #c01f2f;
+        box-shadow: 0 6px 18px rgba(192, 31, 47, 0.35);
       }
-      .nav-link.nav-buy:hover { filter: brightness(1.1) saturate(1.08); box-shadow: 0 8px 22px rgba(255, 80, 0, 0.55), 0 0 28px rgba(255, 200, 0, 0.35); }
+      .nav-link.nav-buy:hover { filter: brightness(1.08); box-shadow: 0 8px 22px rgba(192, 31, 47, 0.5); }
       .btn-buy {
         color: #fff;
         text-decoration: none;
         padding: 10px 16px;
         border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.25);
+        border: 1px solid rgba(255,255,255,0.24);
         position: relative;
         overflow: hidden;
-        background: linear-gradient(120deg, #ff6a00 0%, #ff3b3b 50%, #ffd000 100%);
-        background-size: 200% 200%;
-        box-shadow: 0 6px 18px rgba(255, 80, 0, 0.45), 0 0 24px rgba(255, 160, 0, 0.35);
-        text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-        animation: fireFlow 3s linear infinite, firePulse 1.6s ease-in-out infinite;
+        background: #c01f2f;
+        box-shadow: 0 6px 18px rgba(192, 31, 47, 0.35);
+        text-shadow: none;
+        animation: none;
       }
-      .btn-buy::before {
-        content: "";
-        position: absolute;
-        inset: -20% -30%;
-        background: radial-gradient(closest-side, rgba(255,150,0,0.35), rgba(255,80,0,0.0));
-        transform: translateY(0);
-        filter: blur(10px);
-        animation: ember 6s linear infinite;
-        pointer-events: none;
-      }
+      .btn-buy::before { display: none; }
       .btn-buy:hover { filter: brightness(1.08); }
       .glass-nav .btn-buy { background: rgba(255,255,255,0.12); background-image: none; box-shadow: none; animation: none; text-shadow: none; }
       .glass-nav .btn-buy::before { display: none; }
@@ -196,6 +185,29 @@
         100% { transform: translateY(0); opacity: 0.25; }
       }
       @keyframes swipeHint { 0% { transform: translateY(-50%) translateX(0); opacity: 0.9; } 50% { transform: translateY(-50%) translateX(-8px); opacity: 0.6; } 100% { transform: translateY(-50%) translateX(0); opacity: 0.9; } }
+      @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      .hero-title {
+        margin-top: 12px;
+        text-align: center;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+        position: relative;
+        padding-bottom: 8px;
+      }
+      .hero-title::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        width: 120px;
+        height: 4px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, #1a2b6d, #ffffff, #c01f2f);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      }
 
       /* Content sections */
       .content-section {
@@ -206,12 +218,12 @@
         color: #f2f2f2;
       }
       .content-card {
-        background: rgba(0,0,0,0.35);
-        border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(12, 22, 46, 0.7);
+        border: 1px solid rgba(255,255,255,0.24);
         border-radius: 16px;
         padding: 20px;
-        backdrop-filter: saturate(1.1) blur(10px);
-        -webkit-backdrop-filter: saturate(1.1) blur(10px);
+        backdrop-filter: saturate(1.05) blur(8px);
+        -webkit-backdrop-filter: saturate(1.05) blur(8px);
       }
       .content-section h2 { margin: 0 0 8px; }
       .content-section p { margin: 8px 0 0; line-height: 1.5; }
@@ -265,14 +277,14 @@
         z-index: 1;
         width: min(1120px, 92vw);
         margin: 22px auto 28px;
-        color: #ddd;
+        color: #eaeaea;
         text-align: center;
-        background: rgba(0,0,0,0.35);
-        border: 1px solid rgba(255,255,255,0.18);
+        background: rgba(12, 22, 46, 0.7);
+        border: 1px solid rgba(255,255,255,0.24);
         border-radius: 14px;
         padding: 14px 16px;
-        backdrop-filter: saturate(1.1) blur(10px);
-        -webkit-backdrop-filter: saturate(1.1) blur(10px);
+        backdrop-filter: saturate(1.05) blur(8px);
+        -webkit-backdrop-filter: saturate(1.05) blur(8px);
       }
       .site-footer .footer-links { margin-top: 8px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
       .site-footer .footer-links a { color: #eee; text-decoration: none; font-size: 14px; padding: 4px 8px; border-radius: 8px; }
@@ -320,8 +332,8 @@
         position: absolute;
         inset: 0;
         border-radius: inherit;
-        padding: 1px; /* gradient outline */
-        background: linear-gradient(135deg, rgba(255,120,0,0.9), rgba(255,200,0,0.6), rgba(255,60,0,0.9));
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(26,43,109,0.9), rgba(255,255,255,0.85), rgba(192,31,47,0.9));
         -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
         -webkit-mask-composite: xor;
                 mask-composite: exclude;
@@ -354,15 +366,15 @@
   <body>
     <!-- Background fire video removed -->
 
-    <img id="bg-soldier" src="soldier.jpg" alt="Soldier overlay" />
+    <img id="bg-soldier" src="soldier2.png" alt="Soldier overlay" />
 
     <!-- Fixed bottom background banner -->
-    <img id="bg-bottom-banner" src="web_bottom banner.png" alt="Bottom banner" />
+    <img id="bg-bottom-banner" src="web_bottom banner.png" alt="" />
 
     <!-- Glassmorphism Navbar -->
     <header class="glass-nav">
       <div class="inner">
-        <a href="#home" class="nav-brand"><span>$ANDREW</span></a>
+        <a href="#home" class="nav-brand"><img src="https://flagcdn.com/w40/us.png" alt="US flag" class="flag-icon" /><span>$ANDREW</span></a>
         <nav class="nav-links">
           <a href="#home" class="nav-link">Home</a>
           <a href="#about" class="nav-link">About This Coin</a>
@@ -373,7 +385,7 @@
 
     <!-- Overlay main content with the hero image -->
     <main id="home" class="overlay">
-      <img id="hero-image" class="media" src="hero image.png" alt="Hero image" />
+      <img id="hero-image" class="media" src="american andrew.gif" alt="Hero image" />
       <h1 class="hero-title">$ANDREW COIN</h1>
     </main>
 
@@ -765,5 +777,4 @@
     
   </body>
   </html>
-
 
