@@ -62,6 +62,49 @@
             filter: brightness(1.2);
         }
 
+        /* CA Navbar Style */
+        .ca-navbar {
+            position: absolute; /* Changed from fixed to absolute within hero */
+            bottom: 40px; /* Default for desktop: bottom of hero */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            max-width: 90%;
+        }
+        .ca-navbar:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .ca-navbar-text {
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .ca-navbar-btn {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 900;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
         /* Hero Section */
         .hero {
             position: relative;
@@ -230,10 +273,72 @@
             z-index: 2000;
         }
         /* Responsive */
+        /* Footer Style */
+        .footer {
+            width: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 5% 120px 5%; /* Increased top and significantly increased bottom padding */
+            overflow: hidden;
+        }
+        .footer-gif {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            display: block;
+            margin-bottom: 50px; /* Space between gif and text */
+            transition: 0.3s;
+        }
+        .footer-content {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            max-width: 600px;
+        }
+        .footer-content p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .footer-tagline {
+            color: var(--primary);
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        .copyright {
+            margin-top: 30px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
         @media (max-width: 768px) {
+            .footer {
+                padding: 40px 5% 100px 5%; /* Maintain bottom space on mobile */
+            }
+            .footer-gif {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
             .navbar {
                 justify-content: center;
                 padding: 40px 5% 0 5%; /* Moved lower from top */
+            }
+            .ca-navbar {
+                top: 105px; /* Stay below navbar on mobile */
+                bottom: auto; /* Reset desktop bottom */
+            }
+            .ca-navbar-text {
+                font-size: 0.7rem;
             }
             .nav-links {
                 gap: 40px; /* More gap between icons */
@@ -281,6 +386,10 @@
     </div>
 
     <div class="hero">
+        <div class="ca-navbar" onclick="copyCA()">
+            <span class="ca-navbar-text" id="ca-value">DjkL8nbryr4rfCWdPtXWMyHWpReEHDe8GhUZYFpVpump</span>
+            <button class="ca-navbar-btn">Copy</button>
+        </div>
         <img src="Firefly.png" alt="Hero" class="hero-bg">
         <div class="hero-overlay"></div>
         <div class="hero-logo-container">
@@ -293,25 +402,20 @@
         <div class="grid">
             <div class="grid-item"><img src="baby inside car.jpg" alt="Car"></div>
             <div class="grid-item"><img src="baby outside.jpg" alt="Outside"></div>
-            <div class="grid-item"><img src="meme1.jpg" alt="Outside"></div>
-            <div class="grid-item"><img src="meme2.jpg" alt="Outside"></div>
-            <div class="grid-item"><img src="meme3.jpg" alt="Outside"></div>
-            
-        </div>
-    </section>
-
-    <section class="ca-section">
-        <div class="ca-card">
-            <h2 class="section-title" style="color:#fff;">Join $BabyElon</h2>
-          
-            <div class="ca-box" onclick="copyCA()">
-                <span class="ca-text" id="ca-value">DjkL8nbryr4rfCWdPtXWMyHWpReEHDe8GhUZYFpVpump</span>
-                <button class="copy-btn">Copy</button>
-            </div>
         </div>
     </section>
 
     <div id="toast" class="toast">CONTRACT COPIED!</div>
+
+    <footer class="footer">
+        <img src="babyelon2.gif" alt="Baby Elon GIF" class="footer-gif">
+        <div class="footer-tagline">GOOD JOB HODLERS</div>
+        <div class="footer-content">
+            <p>$BabyElon </p>
+            <p>Disclaimer: $BabyElon is a meme coin for entertainment purposes only. Investing in crypto involves high risk. Only invest what you can afford to lose.</p>
+            <div class="copyright">© 2026 $BabyElon • All Rights Reserved</div>
+        </div>
+    </footer>
 
     <script>
         const audio = document.getElementById('bgMusic');
