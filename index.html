@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$BabyElon - The Future of Mars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD700;
+            --accent: #FF8C00;
+            --bg: #000;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: var(--bg);
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+            align-items: center;
+        }
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+        .nav-links img {
+            height: 24px;
+            width: auto;
+            transition: 0.3s;
+        }
+        .nav-links a:hover img {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: blur(10px); /* Keep the cinematic background blur */
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+        }
+        .hero-logo-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+        .hero-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Sections Layout */
+        section {
+            padding: 100px 5%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        .section-title {
+            font-size: 3rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-align: center;
+            color: var(--primary);
+        }
+        /* Image Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .grid-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
+        }
+        .grid-item:hover {
+            transform: translateY(-10px);
+        }
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* CA Copy Section */
+        .ca-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('babyelon2.gif');
+            background-size: cover;
+            background-position: center;
+            min-height: 50vh;
+            justify-content: center;
+        }
+        .ca-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+        .ca-box {
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .ca-box:hover {
+            border-color: var(--primary);
+        }
+        .ca-text {
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: #fff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .copy-btn {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        /* Music Toggle */
+        .music-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 900;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 2000;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: center;
+                padding: 40px 5% 0 5%; /* Moved lower from top */
+            }
+            .nav-links {
+                gap: 40px; /* More gap between icons */
+                padding: 12px 30px;
+            }
+            .nav-links img {
+                height: 20px;
+            }
+            .hero-logo-container {
+                padding: 0;
+            }
+            .hero-logo-container img {
+                object-fit: cover;
+            }
+            .section-title { font-size: 2rem; }
+            .ca-text { font-size: 0.8rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+        .desktop-only { display: block !important; }
+        .mobile-only { display: none !important; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="https://x.com/GetBabyElon" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/X_logo_2023_%28white%29.svg/3840px-X_logo_2023_%28white%29.svg.png" alt="X">
+            </a>
+            <a href="https://dexscreener.com/solana/4NUk4Tb7yH8ZFzgDYEkuMirX12EP2GmmEUz8E5DReoaC" target="_blank">
+                <img src="https://cdn.imweb.me/thumbnail/20230623/51f0345ce30d3.png" alt="Dexscreener">
+            </a>
+            <a href="https://pump.fun/coin/DjkL8nbryr4rfCWdPtXWMyHWpReEHDe8GhUZYFpVpump" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/en/b/bd/Pump_fun_logo.png" alt="Pump.fun">
+            </a>
+        </div>
+    </nav>
+
+    <audio id="bgMusic" loop>
+        <source src="songbg.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-toggle" onclick="toggleMusic()">
+        <svg viewBox="0 0 24 24" id="soundOn" style="display:none; width:24px; fill:white;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <svg viewBox="0 0 24 24" id="soundOff" style="width:24px; fill:white;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+    </div>
+
+    <div class="hero">
+        <img src="Firefly.png" alt="Hero" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="hero-logo-container">
+            <img src="babyelonlogo.png" alt="Logo">
+        </div>
+    </div>
+
+    <section>
+        <h2 class="section-title">Explore Baby Elon Musk</h2>
+        <div class="grid">
+            <div class="grid-item"><img src="baby inside car.jpg" alt="Car"></div>
+            <div class="grid-item"><img src="baby outside.jpg" alt="Outside"></div>
+            <div class="grid-item"><img src="meme1.jpg" alt="Outside"></div>
+            <div class="grid-item"><img src="meme2.jpg" alt="Outside"></div>
+            <div class="grid-item"><img src="meme3.jpg" alt="Outside"></div>
+            
+        </div>
+    </section>
+
+    <section class="ca-section">
+        <div class="ca-card">
+            <h2 class="section-title" style="color:#fff;">Join $BabyElon</h2>
+          
+            <div class="ca-box" onclick="copyCA()">
+                <span class="ca-text" id="ca-value">DjkL8nbryr4rfCWdPtXWMyHWpReEHDe8GhUZYFpVpump</span>
+                <button class="copy-btn">Copy</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="toast" class="toast">CONTRACT COPIED!</div>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        const sOn = document.getElementById('soundOn');
+        const sOff = document.getElementById('soundOff');
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                sOn.style.display = 'block';
+                sOff.style.display = 'none';
+            } else {
+                audio.pause();
+                sOn.style.display = 'none';
+                sOff.style.display = 'block';
+            }
+        }
+
+        document.body.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    sOn.style.display = 'block';
+                    sOff.style.display = 'none';
+                }).catch(() => {});
+            }
+        }, { once: true });
+
+        function copyCA() {
+            const ca = document.getElementById('ca-value').innerText;
+            navigator.clipboard.writeText(ca).then(() => {
+                const toast = document.getElementById('toast');
+                toast.style.opacity = '1';
+                setTimeout(() => toast.style.opacity = '0', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
