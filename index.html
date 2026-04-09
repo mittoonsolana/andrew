@@ -393,7 +393,7 @@
         <img src="Firefly.png" alt="Hero" class="hero-bg">
         <div class="hero-overlay"></div>
         <div class="hero-logo-container">
-            <img src="babyelonlogo.png" alt="Logo">
+            <img src="babyelonlogo.png" alt="Logo" id="heroLogo">
         </div>
     </div>
 
@@ -422,16 +422,19 @@
         const audio = document.getElementById('bgMusic');
         const sOn = document.getElementById('soundOn');
         const sOff = document.getElementById('soundOff');
+        const heroLogo = document.getElementById('heroLogo');
 
         function toggleMusic() {
             if (audio.paused) {
                 audio.play();
                 sOn.style.display = 'block';
                 sOff.style.display = 'none';
+                heroLogo.src = 'babyelonlogo.gif';
             } else {
                 audio.pause();
                 sOn.style.display = 'none';
                 sOff.style.display = 'block';
+                heroLogo.src = 'babyelonlogo.png';
             }
         }
 
@@ -440,6 +443,7 @@
                 audio.play().then(() => {
                     sOn.style.display = 'block';
                     sOff.style.display = 'none';
+                    heroLogo.src = 'babyelonlogo.gif';
                 }).catch(() => {});
             }
         }, { once: true });
